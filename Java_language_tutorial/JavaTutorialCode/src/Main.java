@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Scanner;
 
 class Main {
@@ -55,6 +58,66 @@ class Main {
         String answer = scanner.nextLine();
         System.out.println(answer);
 
+        System.out.print("Do you want to test calculator: ");
+        String answer2 = scanner.nextLine();
+        if (answer2.equals("yes")) {
+
+            //conditional statements
+            //calculator exercise (for if statements)
+            System.out.print("Enter the first number:");
+            double input1 = scanner.nextDouble();
+            scanner.nextLine();
+            System.out.print("Enter the second number:");
+            double input2 = scanner.nextDouble();
+            scanner.nextLine();
+
+            System.out.println("What operation do you want to perform?");
+            String operation = scanner.nextLine();
+
+            if (operation.equalsIgnoreCase("sum") || operation.equals("+")) {
+                System.out.printf("%.2f + %.2f = %.2f\n", input1, input2, input1 + input2);
+            } else if (operation.equalsIgnoreCase("sub") || operation.equals("-")) {
+                System.out.printf("%.2f - %.2f = %.2f\n", input1, input2, input1 - input2);
+            } else if (operation.equalsIgnoreCase("div") || operation.equals("/")) {
+                if (input2 != 0) {
+                    System.out.printf("%.2f / %.2f = %.2f\n", input1, input2, input1 / input2);
+                } else {
+                    System.out.println("You can't divide by zero!");
+                }
+            } else if (operation.equalsIgnoreCase("mul") || operation.equals("*")) {
+                System.out.printf("%.2f * %.2f = %.2f\n", input1, input2, input1 * input2);
+            } else {
+                System.out.printf("%s is not a supported operation", operation);
+            }
+
+            //Calculator exercise for switch case statement
+            switch (operation) {
+                case "+":
+                case "sum":
+                    System.out.printf("%.2f + %.2f = %.2f\n", input1, input2, input1 + input2);
+                    break;
+                case "-":
+                case "sub":
+                    System.out.printf("%.2f - %.2f = %.2f\n", input1, input2, input1 - input2);
+                    break;
+                case "/":
+                case "div":
+                    if (input2 != 0) {
+                        System.out.printf("%.2f / %.2f = %.2f\n", input1, input2, input1 / input2);
+                    } else {
+                        System.out.println("You can't divide by zero!");
+                    }
+                    break;
+                case "*":
+                case "mul":
+                    System.out.printf("%.2f * %.2f = %.2f\n", input1, input2, input1 * input2);
+                    break;
+                default:
+                    System.out.printf("%s is not a supported operation", operation);
+                    break;
+            }
+        }
+
         switch (answer){
             case "Yes":
                 System.out.print("Please enter a word: "); // print instead of println means that there is no new line character at the end
@@ -82,6 +145,135 @@ class Main {
             default:
                 break;
         }
+
+        //Arrays
+        char vowels[] = new char[5];
+        vowels[0] = 'a';
+        vowels[1] = 'e';
+        vowels[2] = 'i';
+        vowels[3] = 'o';
+        vowels[4] = 'u';
+
+        char vowels2[] = {'e', 'i', 'u', 'a', 'o'}; // can also declare and initialize at same time (length of array is automatically capped to the number of items it is declared with)
+
+        System.out.println(vowels[2]); // prints a single index
+        System.out.println(Arrays.toString(vowels)); // prints whole array as a string
+
+        // find length of an array
+        System.out.println(vowels2.length); // array.length (property)
+
+        //Sort an array
+        System.out.println(Arrays.toString(vowels2));
+        Arrays.sort(vowels2, 1,4); // sorts the array in a specified range
+        System.out.println(Arrays.toString(vowels2));
+        Arrays.sort(vowels2); // changes the actual array
+        System.out.println(Arrays.toString(vowels2));
+
+        // search for a value in a sorted array
+        char key = 'o';
+        int foundItemIndex = Arrays.binarySearch(vowels2, key); // returns the index number if found, or a negative value if it can't find it in the array
+        System.out.println("The letter " + vowels2[foundItemIndex] + " was found at index " + foundItemIndex);
+        int foundItemIndexInRange = Arrays.binarySearch(vowels2, 1, 4, key); // search within a specified range and returns a negative value if it can't find it in the range
+        System.out.println("The letter " + vowels2[foundItemIndexInRange] + " was found at index " + foundItemIndexInRange);
+
+        //Fill an array
+        Arrays.fill(vowels, 'x');
+        System.out.println(Arrays.toString(vowels));
+        Arrays.fill(vowels, 1, 4, '0'); // fills the array in a specified range
+        System.out.println(Arrays.toString(vowels));
+
+        // To make an actual copy of an array without it being a reference only
+        int numbers[] = {1,2,3,4,5};
+        int copyOfNumbers[] = Arrays.copyOf(numbers, numbers.length); // length of array can be greater or smaller e.g. 10 in the second parameter
+        int copyOfNumbersInRange[] = Arrays.copyOfRange(numbers, 2, 10); // copy the array within a specified range
+        System.out.println(Arrays.toString(numbers));
+        System.out.println(Arrays.toString(copyOfNumbers));
+        System.out.println(Arrays.toString(copyOfNumbersInRange));
+
+        // compare Arrays
+        System.out.println(numbers == copyOfNumbers); // is false as they are not the same object
+        System.out.println(Arrays.equals(numbers, copyOfNumbers)); // compares the contents of the arrays
+
+        // ways to loop through arrays
+        for (int i = 0; i < numbers.length; i++){ // normal way to loop through an array
+            System.out.println(numbers[i]);
+        }
+
+        for (int i = 0; i <= 15; i++){
+            if (i % 2 == 1){
+                System.out.println(i);
+            }
+        }
+
+        for (int number : numbers){ // another way to loop through an array
+            System.out.println(number);
+        }
+
+        int counter = 0;
+        while (counter <= 10){
+            System.out.println(counter);
+            counter++;
+        }
+        counter = 0;
+        do {
+            System.out.println(counter);
+            counter++;
+        } while (counter <= 10);
+
+        //Array lists
+        ArrayList<Integer> numbersArrayList = new ArrayList<Integer>(); // Integer is the reference type for int
+
+        // Add values to the Array List
+        numbersArrayList.add(5);
+        numbersArrayList.add(2);
+        numbersArrayList.add(3);
+        numbersArrayList.add(4);
+        numbersArrayList.add(1);
+
+        System.out.println(numbersArrayList.toString()); // prints out whole array list
+        System.out.println(numbersArrayList.get(2)); // Prints the value in a specified index
+
+        //Check the size of an array list
+        System.out.println(numbersArrayList.size());
+
+        //check if the array list contains a specified value
+        System.out.println(numbersArrayList.contains(Integer.valueOf(1)));
+
+        //check if the array list contains anything
+        System.out.println(numbersArrayList.isEmpty());
+
+        // change values in the Array list
+        numbersArrayList.set(2, 30); // sets the value at the specified index to the specified value
+        System.out.println(numbersArrayList.toString());
+
+        //Sort the array list
+        numbersArrayList.sort(Comparator.naturalOrder()); // in natural order
+        System.out.println(numbersArrayList.toString());
+
+        numbersArrayList.sort(Comparator.reverseOrder()); // in reverse order
+        System.out.println(numbersArrayList.toString());
+
+        //Loop through the Array list
+        numbersArrayList.forEach(number -> { // One way to loop through an array list
+            numbersArrayList.set(numbersArrayList.indexOf(number), number * 2); // .index() returns the index of the specified number
+            System.out.println(number);
+        });
+
+        for (int number : numbersArrayList){ // another way to loop through an array list
+            System.out.println(number);
+        }
+
+        //Remove values from the Array list
+        numbersArrayList.remove(1); // removes the value at specified index
+        System.out.println(numbersArrayList.toString());
+
+        numbersArrayList.remove(Integer.valueOf(4)); // removes the specified value
+        System.out.println(numbersArrayList.toString());
+
+        numbersArrayList.clear(); // removes all the items
+        System.out.println(numbersArrayList.toString());
+        System.out.println(numbersArrayList.isEmpty());
+
 
         //Data types
         // integer types
