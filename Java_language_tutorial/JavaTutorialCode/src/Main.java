@@ -2,6 +2,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Scanner;
+import java.util.HashMap;
+import java.time.LocalDate;
 
 class Main {
     static int aged; //static methods can only access static variables
@@ -274,6 +276,56 @@ class Main {
         System.out.println(numbersArrayList.toString());
         System.out.println(numbersArrayList.isEmpty());
 
+        //HashMaps
+        HashMap<String, Integer> examScores = new HashMap<String, Integer>(); //declares a hashMap
+
+        //to add a value pair to a HashMap
+        examScores.put("Maths", 90);
+        examScores.put("Computer Science", 100);
+        examScores.put("Physics", 82);
+
+        //To add a value pair if the key does not already exist inside the HashMap
+        examScores.putIfAbsent("Maths", 10); //does nothing as already exists inside the hashMap
+        System.out.println(examScores.toString());
+
+        //to replace the value of a specified key
+        examScores.replace("Maths", 20);
+        System.out.println(examScores.toString());
+
+        System.out.println(examScores.toString()); //Prints the whole HashMap
+        System.out.println(examScores.get("Maths")); //Prints the value associated with the specified key
+
+        //specify return values if key not found
+        System.out.println(examScores.get("English")); //returns null if not found
+        System.out.println(examScores.getOrDefault("English",-1)); //returns specified value (-1) if key not found
+
+        //To check if a hashMap contains a specified key
+        System.out.println(examScores.containsKey("Maths"));
+
+        //To check if a hashMap contains a specified Value
+        System.out.println(examScores.containsValue(100));
+
+        //To remove a value pair from a HashMap
+        examScores.remove("Physics");
+        System.out.println(examScores.toString());
+
+        //To return the number of value pairs in a HashMap
+        System.out.println(examScores.size());
+
+        //To loop thought a HashMap
+        examScores.forEach((subject, score) -> {
+            examScores.replace(subject,(score * 2));
+        });
+        System.out.println(examScores.toString());
+
+
+
+        //Clear out the entire hashMap
+        examScores.clear();
+        System.out.println(examScores.toString());
+
+        //To check if a hashMap is empty
+        System.out.println(examScores.isEmpty());
 
         //Data types
         // integer types
@@ -326,6 +378,36 @@ class Main {
         //Check if a string contains a substring
         System.out.println(word.contains("There"));
 
+        //Object-Oriented Programming
+        //To instantiate an object from one of the other classes
+        User youngerUser = new User("Walter", "2009-04-09"); //Instantiates a User object
+        //youngerUser.name = "Walter"; --> used if the attributes are public
+        //youngerUser.birthday = LocalDate.parse("2009-04-09");
 
+        System.out.printf("%s was born back in %s\n", youngerUser.getName(), youngerUser.getBirthday().toString());
+        System.out.printf("He is now %d years old\n", youngerUser.age());
+
+        User olderUser = new User("Gary", "1920-01-01"); //instantiate another User object
+        //olderUser.name = "Gary"; --> used if the attributes are public
+        //olderUser.birthday = LocalDate.parse("1920-01-01");
+
+        System.out.printf("%s was born back in %s\n", olderUser.getName(), olderUser.getBirthday().toString());
+        System.out.printf("He is now %d years old\n", olderUser.age());
+
+        Book book = new Book("Good Omens", "Terry Pratchett", 500);
+        //book.title = "Good Omens";
+        //book.author = "Terry Pratchett";
+
+        youngerUser.borrow(book);
+        System.out.printf("%s currently has the books:\n", youngerUser.getName());
+        youngerUser.getBooks();
+
+        System.out.printf("%s currently has the books: %s\n", youngerUser.getName(), youngerUser.borrowedBooks());
+
+        AudioBook HarryPotter = new AudioBook("Harry Potter", "Someone",  28000);
+        System.out.println(HarryPotter.toString());
+
+        Ebook jeeves = new Ebook("Carry On Jeeves", "P.G.Wodehouse", 280, "PDF");
+        System.out.println(jeeves.toString());
     }
 }
